@@ -4,4 +4,4 @@ project(programowanie_imperatywne C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(programowanie_imperatywne
-        lab01/zad4.c)
+        lab13/dll_template.c)

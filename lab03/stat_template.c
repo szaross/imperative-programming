@@ -1,15 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <math.h>
+
 #define TWO_DICE_SUM 11
+
+void fill_with_randoms(int i_vector[], int n, int a, int b){
+    for(int i=0;i<n;i++){
+        i_vector[i]=(rand()%(b-a+1))+a;
+    }
+}
+
 
 // Calculates arithmetic mean and variance of numbers from n-element array v[]
 // for n = 0: mean = variance = 0
 void mean_variance(const int v[], int n, double *mean, double *variance) {
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=v[i];
+    }
+    *mean=(double)sum/(double)n;
+    *variance=0;
+    for(int i=0;i<n;i++){
+        *variance+=pow((double)v[i]-*mean,2);
+    }
+    *variance/=n;
 }
 
 // Fill n-element array v[] with Bernoulli sample (binary values)
 void bernoulli_gen(int v[], int n, double probability) {
+    for(int i=0;i<n;i++){
+        if(rand()<probability*RAND_MAX+probability) v[i]=1;
+        else v[i]=0;
+    }
 }
 
 // Calculate pmf (probability mass function) of discrete random variable.
